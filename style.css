@@ -1,0 +1,89 @@
+/* body{
+    border: 5px solid gold;
+} */
+
+.container{
+    background-color: rgb(224, 224, 233);
+    border: 5px coral;
+}
+
+#head{
+    position: relative;
+    background-color: rgb(229, 235, 147);
+    border: 2px solid gray;
+    border-radius: 15px;
+    height:150px;
+    padding: 10px;
+    margin: auto;
+}
+
+.accordion-body{
+    padding: 12px;
+}
+#nevbar{
+
+    background-color: rgb(229, 235, 147);
+    border: 2px solid gray;
+    border-radius: 15px;
+    height:50px;
+    margin: auto;
+}
+
+#maps {
+    background-color: rgb(233, 233, 243);
+    border: 3px solid #73AD21;
+    border-radius: 15px;
+    /* height: 600px; */
+    padding: 10px;
+    margin: auto;
+    /* line-height: 30px; */
+}
+
+/* .row{
+    background-color: rgb(15, 15, 207);
+    border: 1px solid #795571;
+} */
+.col{
+    background-color: rgb(233, 233, 243);
+    border: 3px solid #ad218f;
+}
+.col-6{
+    background-color: rgb(143, 207, 146);
+    border: 1px solid #ad218f;
+    padding:0;
+    padding-top: 5px;
+
+}
+.col-md-7{
+    background-color: rgb(216, 236, 225);
+    border: 1px solid #ad218f;
+    border-radius: 5px;
+
+}
+
+.soilPara-map{
+    background-color: rgb(15, 15, 207);
+    border: 1px solid #795571;
+
+}
+#Advisory {
+
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    border: 2px solid gray;
+    border-radius: 15px;
+    height:250px;
+    padding: 10px;
+    margin: auto;
+
+}
+
+#footer {
+    position: relative;
+    background-color: rgb(229, 235, 147);
+    border: 2px solid gray;
+    border-radius: 15px;
+    height:150px;
+    padding: 10px;
+    margin: auto;
+}

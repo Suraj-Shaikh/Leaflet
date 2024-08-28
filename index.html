@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=, initial-scale=1.0" />
+    <title>NBSS Advisory New</title>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+    <script src="https://unpkg.com/leaflet-kmz@latest/dist/leaflet-kmz.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.6/underscore-min.js"
+        integrity="sha512-2V49R8ndaagCOnwmj8QnbT1Gz/rie17UouD9Re5WxbzRVUGoftCu5IuqqtAM9+UC3fwfHCSJR1hkzNQh/2wdtg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <link href="./css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./data/villagedata.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Templet Heading  -->
+        <div class="row" id="head">
+            <!-- Templet left side logo  -->
+            <div class="col-2">
+                <img src="Images/pocra logo.jpg" alt="" width="50px" /> <br /><br />
+                <img src="Images/NBSS.png" alt="" width="50px" />
+            </div>
+            <!-- Templet Title   -->
+            <div class="col" id="title">
+                <h3 style="color: rgb(19, 18, 18)">
+                    नानाजी देशमुख कृषि संजीवनी प्रकल्प
+                </h3>
+                <h1 style="color: red">गाव जमीन-मृदा नकाशे</h1>
+            </div>
+            <!-- Templet right side logo  -->
+            <div class="col-2">
+                <img src="Images/E-krushi-vibhag-logo.jpg" alt="" width="50px" />
+                <br /><br />
+                <img src="Images/World_Bank.png" alt="" width="60px" />
+            </div>
+        </div>
+        <!-- Templet nevigation Dropdown -->
+        <div class="row align-items-center" id="nevbar">
+            <div class="accordion mb-4" id="accordionSelectionMenu">
+                <div id="collapseSelectionMenu" class="accordion-collapse collapse show"
+                    aria-labelledby="headingSelectionMenu" data-bs-parent="#accordionSelectionMenu">
+                    <!-- Dropdown Selection -->
+                    <div class="accordion-body">
+                        <!-- Dropdown Div -->
+                        <div class="row">
+                            <!-- District Dropdown -->
+                            <div class="col-xl-3 col-md-3">
+                                <label for="distid"> जिल्हा : </label>
+                                <select name="distname" id="distid" onchange="GetDistrictName()">
+                                    <option value="-1">-- जिल्हा निवडा --</option>
+                                </select>
+                            </div>
+                            <!-- Taluka Dropdown -->
+                            <div class="col-xl-3 col-md-3">
+                                <label for="thnid">तालुका : </label>
+                                <select name="thname" id="thnid" onchange="GetTalukaName()">
+                                    <option value="-1">--तालुका निवडा--</option>
+                                </select>
+                            </div>
+                            <!-- Village Dropdown -->
+                            <div class="col-xl-3 col-md-3">
+                                <label for="villid">गाव : </label>
+                                <select name="vilname" id="villid" onchange="">
+                                    <option value="-1">--गाव निवडा--</option>
+                                </select>
+                            </div>
+                            <!-- Village Dropdown -->
+                            <div class="col-xl-3 col-md-3">
+                                <span id="vill-lat-long">अक्षांश-रेखांश:</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" id="maps">
+            <div class="row m-1 one" id="">
+                <div class="col-6">
+                    <div class="card-header" id="card-title">
+                        <i class="fa-regular fa-map"></i>
+                        Landform
+                    </div>
+                    <div class="row m-1">
+                        <div class="col-md-7 m-1" id="lfmap">map div</div>
+                        <div class="col-md-3">
+                            <table class="table table-condensed" style="font-size:2vh;">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">First</th>
+                                        <th scope="col">Last</th>
+                                        <th scope="col">Handle</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                        <td>@fat</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td colspan="2">Larry the Bird</td>
+                                        <td>@twitter</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-6">
+                    <div class="card-header" id="card-title">
+                        <i class="fa-regular fa-map"></i>
+                        Soil Depth
+                    </div>
+                    <div class="row m-1">
+                        <div class="col-md-7 m-1" id="sdmap">map div</div>
+                        <div class="col-md-3">
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">First</th>
+                                        <th scope="col">Last</th>
+                                        <th scope="col">Handle</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                        <td>@fat</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td colspan="2">Larry the Bird</td>
+                                        <td>@twitter</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row m-1 two" id="">
+                <div class="col-6">
+                    <div class="card-header" id="card-title">
+                        <i class="fa-regular fa-map"></i>
+                        Soil AWC
+                    </div>
+                    <div class="row m-1">
+                        <div class="col-md-7 m-1" id="awcmap">map div</div>
+                        <div class="col-md-3">
+                            <table class="table" id="Tab" border="1">
+                                <tr>
+                                    <th>भूरूपे</th>
+                                    <th>निर्देशंक</th>
+                                    <th>क्षेत्र (हे.)(&percnt;)</th>
+                                </tr>
+                                <tr>
+                                    <td>उथळ</td>
+                                    <td style="background-color: #73ad21"></td>
+                                    <td>3</td>
+                                    <td>4</td>
+                                </tr>
+                                <tr>
+                                    <td>मध्यम</td>
+                                    <td style="background-color: #c4691f"></td>
+                                    <td>3</td>
+                                    <td>4</td>
+                                </tr>
+                                <tr>
+                                    <td>खोलगट</td>
+                                    <td style="background-color: #9621ad"></td>
+                                    <td>3</td>
+                                    <td>4</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card-header" id="card-title">
+                        <i class="fa-regular fa-map"></i>
+                        Soil OC
+                    </div>
+                    <div class="row m-1">
+                        <div class="col-md-7 m-1" id="ocmap">map div</div>
+                        <div class="col-md-3">
+                            <table class="table" id="Tab" border="1">
+                                <tr>
+                                    <th>भूरूपे</th>
+                                    <th>निर्देशंक</th>
+                                    <th>क्षेत्र (हे.)(&percnt;)</th>
+                                </tr>
+                                <tr>
+                                    <td>उथळ</td>
+                                    <td style="background-color: #73ad21"></td>
+                                    <td>3</td>
+                                    <td>4</td>
+                                </tr>
+                                <tr>
+                                    <td>मध्यम</td>
+                                    <td style="background-color: #c4691f"></td>
+                                    <td>3</td>
+                                    <td>4</td>
+                                </tr>
+                                <tr>
+                                    <td>खोलगट</td>
+                                    <td style="background-color: #9621ad"></td>
+                                    <td>3</td>
+                                    <td>4</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row text-justify" id="Advisory">
+            <ul style="font-size: 15px">
+                <li>
+                    ज्वारी, बाजारी, कडधान्ये इ. हलक्या प्रतीच्या जमिनीवर येणाऱ्या
+                    पिकांसाठी योग्य.
+                </li>
+                <li>सोयाबीन, भुईमूग इ. मध्यम खोलीवर मुळे असणाऱ्या पिकांसाठी योग्य.</li>
+                <li>सर्व प्रकारच्या पिकांसाठी योग्य जमीन.</li>
+                <li>
+                    कमी जल धारण क्षमता. पसरट पिक घ्यावे. सेंद्रिय कचरा किंवा प्लॅस्टिकचे
+                    आच्छादण वापरावे. शेणखत, गांढुळखताचा सढळ वापर करावा.
+                </li>
+                <li>
+                    मध्यम जल धारण क्षमता. पावसाने ८ - १० दिवस ताण दिल्यास आच्छादण वापरावे.
+                </li>
+                <li>
+                    अधिक जल धारण क्षमता. निचरा होण्यासाठी तात्पुरती सरी दर १५ - २० फुट
+                    अंतरावर बनवावी. पेरणी करताना दर ३ - ४ ओळीनंतर सरी पाडण्यासाठी ३ फुट
+                    जागा सोडावी.
+                </li>
+            </ul>
+        </div>
+
+        <div class="row" id="footer">
+            माती वाचवा! जमिनीचे संवर्दधन करा !! सेंद्रिय कर्ब वाढवा !!! अधिक
+            माहितीसाठी संपर्क: ग्राम कृषि संजीवनी समिती/ तालुका कृषि अधिकारी कार्यालय
+            <br />
+            http://mahapocra.gov.in
+        </div>
+
+        <script src="./main.js"></script>
+</body>
+
+</html>
