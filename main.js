@@ -101,19 +101,9 @@ function LoadDistrict() {
 
     let newGeoJson = { type: 'FeatureCollection', features: filterFeatures }
 
-    map.rem
-    myLayer = L.geoJSON(newGeoJson).addTo(map);
-    myLayer.addData(villageData);
+    map.removeLayer(myLayer)
+    myLayer.addData(newGeoJson);
+    map.fitBounds(myLayer.getBounds());
 
-    // if (chk == false) {
-    //   uniDistrict.push(dist.dtmname);
-    //   var option = document.createElement("option");
-    //   option.text = disName;
-    //   option.value = disName;
-    //   selectdistrict.appendChild(option);
-    //   // seletState.add(new Option(stateName, stateName))
-    // }
-  })
-
-  console.log(filterFeatures)
+  });
 }
