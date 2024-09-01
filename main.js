@@ -6,7 +6,7 @@ const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
-var myLayer = L.geoJSON().addTo(map);
+let myLayer = L.geoJSON().addTo(map);
 myLayer.addData(villageData);
 map.fitBounds(myLayer.getBounds());
 
@@ -60,6 +60,7 @@ function GetDistrictName() {
       }
     }
   }
+  LoadDistrict()
 }
 
 
@@ -91,19 +92,23 @@ let filterFeatures = [];
 function LoadDistrict() {
   let districtData = villageData.features;
   filterFeatures = [];
+
+  let select = document.getElementById("distid");
+  let selectDistrictText = select.options[select.selectedIndex].text;
+
   districtData.forEach(function (e) {
     let disName = e.properties['dtmname'];
-    // console.log(disName)
-    let chk = uniDistrict.includes(disName);
-    if (disName == "उस्मानाबाद") {
+    if (disName == selectDistrictText) {
       filterFeatures.push(e);
     }
-
-    let newGeoJson = { type: 'FeatureCollection', features: filterFeatures }
-
-    map.removeLayer(myLayer)
-    myLayer.addData(newGeoJson);
-    map.fitBounds(myLayer.getBounds());
-
   });
+
+  let newGeoJson = { type: 'FeatureCollection', features: filterFeatures}
+
+  map.removeLayer(myLayer)
+  myLayer = L.geoJSON(newGeoJson).addTo(map);
+  map.fitBounds(myLayer.getBounds());
 }
+
+
+
