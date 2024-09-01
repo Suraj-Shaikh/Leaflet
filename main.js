@@ -10,6 +10,42 @@ let myLayer = L.geoJSON().addTo(map);
 myLayer.addData(villageData);
 map.fitBounds(myLayer.getBounds());
 
+// Soil Depth Layer
+const sdmap = L.map('sdmap').setView([24.6862, 72.09298], 7);
+
+const tiles1 = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(sdmap);
+
+let sdLayer = L.geoJSON().addTo(sdmap);
+sdLayer.addData(villageData);
+sdmap.fitBounds(sdLayer.getBounds());
+
+// Soil AWC Layer
+const awcmap = L.map('awcmap').setView([24.6862, 72.09298], 7);
+
+const tiles2 = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(awcmap);
+
+let awcLayer = L.geoJSON().addTo(awcmap);
+awcLayer.addData(villageData);
+awcmap.fitBounds(awcLayer.getBounds());
+
+// Soil OC Layer
+const ocmap = L.map('ocmap').setView([24.6862, 72.09298], 7);
+
+const tiles3 = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(ocmap);
+
+let ocLayer = L.geoJSON().addTo(ocmap);
+ocLayer.addData(villageData);
+ocmap.fitBounds(ocLayer.getBounds());
+
 let uniTaluka = [];
 let uniVillages = [];
 
@@ -103,11 +139,23 @@ function LoadDistrict() {
     }
   });
 
-  let distGeoJson = { type: 'FeatureCollection', features: filterFeatures}
+  let distGeoJson = { type: 'FeatureCollection', features: filterFeatures }
 
   map.removeLayer(myLayer)
   myLayer = L.geoJSON(distGeoJson).addTo(map);
   map.fitBounds(myLayer.getBounds());
+
+  sdmap.removeLayer(sdLayer)
+  sdLayer = L.geoJSON(distGeoJson).addTo(sdmap);
+  sdmap.fitBounds(myLayer.getBounds());
+
+  awcmap.removeLayer(awcLayer)
+  awcLayer = L.geoJSON(distGeoJson).addTo(awcmap);
+  awcmap.fitBounds(myLayer.getBounds());
+
+  ocmap.removeLayer(ocLayer)
+  ocLayer = L.geoJSON(distGeoJson).addTo(ocmap);
+  ocmap.fitBounds(myLayer.getBounds());
 }
 
 function LoadTaluka() {
@@ -127,11 +175,23 @@ function LoadTaluka() {
     }
   });
 
-  let talukaGeoJson = { type: 'FeatureCollection', features: filterFeatures}
+  let talukaGeoJson = { type: 'FeatureCollection', features: filterFeatures }
 
   map.removeLayer(myLayer)
   myLayer = L.geoJSON(talukaGeoJson).addTo(map);
   map.fitBounds(myLayer.getBounds());
+
+  sdmap.removeLayer(sdLayer)
+  sdLayer = L.geoJSON(talukaGeoJson).addTo(sdmap);
+  sdmap.fitBounds(myLayer.getBounds());
+
+  awcmap.removeLayer(awcLayer)
+  awcLayer = L.geoJSON(talukaGeoJson).addTo(awcmap);
+  awcmap.fitBounds(myLayer.getBounds());
+
+  ocmap.removeLayer(ocLayer)
+  ocLayer = L.geoJSON(talukaGeoJson).addTo(ocmap);
+  ocmap.fitBounds(myLayer.getBounds());
 }
 
 function LoadVillage() {
@@ -154,11 +214,23 @@ function LoadVillage() {
     }
   });
 
-  let villageGeoJson = { type: 'FeatureCollection', features: filterFeatures}
+  let villageGeoJson = { type: 'FeatureCollection', features: filterFeatures }
 
   map.removeLayer(myLayer)
   myLayer = L.geoJSON(villageGeoJson).addTo(map);
   map.fitBounds(myLayer.getBounds());
+
+  sdmap.removeLayer(sdLayer)
+  sdLayer = L.geoJSON(villageGeoJson).addTo(sdmap);
+  sdmap.fitBounds(myLayer.getBounds());
+
+  awcmap.removeLayer(awcLayer)
+  awcLayer = L.geoJSON(villageGeoJson).addTo(awcmap);
+  awcmap.fitBounds(myLayer.getBounds());
+
+  ocmap.removeLayer(ocLayer)
+  ocLayer = L.geoJSON(villageGeoJson).addTo(ocmap);
+  ocmap.fitBounds(myLayer.getBounds());
 }
 
 
