@@ -16,6 +16,11 @@ myLayer.addData(villageData);
 // Adjust the map view to fit the bounds of the GeoJSON layer
 map.fitBounds(myLayer.getBounds());
 
+var wmsLayer = L.Geoserver.wms("http://localhost:8080/geoserver/Local_postgres/wms", {
+  layers: "Local_postgres:nbss_all_soil_data",
+});
+wmsLayer.addTo(map);
+
 // Initialize the soil depth map with a view centered at specified coordinates and zoom level
 const sdmap = L.map('sdmap').setView([24.6862, 72.09298], 7);
 
